@@ -1,0 +1,57 @@
+<html>
+	<body>
+		<meta charset="utf-8">
+			<style>
+			table, th, td {
+				border: 1px solid black;
+				border-collapse: collapse;
+			}
+			
+			.invoice {
+				margin: auto;
+				width: 60%;
+				margin-top: 50px;
+			}
+
+			.total {
+				text-align: right;
+			}
+		</style>
+		<style media="print">
+			@page { 
+				size: landscape;
+			}
+		</style>
+		<div class="invoice">
+			<p>
+				請求先： ###to###
+			</p>
+			<table>
+				<thead>
+					<tr>
+						<th width="400">項目</th>
+						<th width="200">金額</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>サービスhoge</td>
+						<td>** 円</td>
+					</tr>
+					<tr>
+						<td>サービスfuga</td>
+						<td>** 円</td>
+					</tr>
+					<tr>
+						<td>サービスfoo</td>
+						<td>** 円</td>
+					</tr>
+				</tbody>
+
+			</table>
+			<p class="total">
+				合計: ** 円
+			</p>
+		</div>
+	</body>
+</html>
