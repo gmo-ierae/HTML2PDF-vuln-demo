@@ -1,3 +1,5 @@
+# Copyright (c) GMO Cybersecurity by Ierae, Inc. All rights reserved.
+
 from flask import (
     Flask,
     request,
@@ -16,6 +18,7 @@ def index():
     return render_template('index.html')
 
 
+# wkhtmltopdfを利用したPDF生成を行うエンドポイント
 @app.route('/invoice', methods=['POST'])
 def invoice_pdf():
 
@@ -30,6 +33,7 @@ def invoice_pdf():
     return send_file(f'data/{file_id}.pdf', download_name='invoice.pdf')
 
 
+# 内部用エンドポイントを想定したもの
 @app.route('/internal', methods=['GET'])
 def internal():
     if request.remote_addr != '127.0.0.1':
