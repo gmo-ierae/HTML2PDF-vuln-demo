@@ -28,7 +28,7 @@ def receipt_pdf():
     template = open('./templates/pdf_template.html').read().replace('###to###', receipt_to)
 
     cmd = ['/usr/local/bin/wkhtmltopdf', '-', f'./data/{file_id}.pdf']
-    subprocess.run(cmd, input=template.encode(), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(cmd, input=template.encode(), timeout=5, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     return send_file(f'data/{file_id}.pdf', download_name='receipt.pdf')
 
