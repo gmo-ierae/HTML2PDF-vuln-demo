@@ -19,18 +19,18 @@ def index():
 
 
 # wkhtmltopdfを利用したPDF生成を行うエンドポイント
-@app.route('/invoice', methods=['POST'])
-def invoice_pdf():
+@app.route('/receipt', methods=['POST'])
+def receipt_pdf():
 
     file_id = str(uuid.uuid4())
 
-    invoice_to = request.form.get('invoice_to') or ''
-    template = open('./templates/pdf_template.html').read().replace('###to###', invoice_to)
+    receipt_to = request.form.get('receipt_to') or ''
+    template = open('./templates/pdf_template.html').read().replace('###to###', receipt_to)
 
     cmd = ['/usr/local/bin/wkhtmltopdf', '-', f'./data/{file_id}.pdf']
-    subprocess.run(cmd, timeout=5, input=template.encode(), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    subprocess.run(cmd, input=template.encode(), stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
-    return send_file(f'data/{file_id}.pdf', download_name='invoice.pdf')
+    return send_file(f'data/{file_id}.pdf', download_name='receipt.pdf')
 
 
 # 内部用エンドポイントを想定したもの
